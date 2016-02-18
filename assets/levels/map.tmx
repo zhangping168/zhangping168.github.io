@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="13" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="Platform" tilewidth="32" tileheight="32" tilecount="171">
+  <image source="tileset.png" trans="55aaff" width="288" height="608"/>
+  <tile id="1">
+   <properties>
+    <property name="collision" value="box"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collision" value="box"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collision" value="box"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="collision" value="box"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="collision" value="box"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="collision" value="box"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="class" value="fish"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="collision" value="box"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="class" value="princess"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="collision" value="box"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="class" value="player"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="collision" value="cloud"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="collision" value="cloud"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="collision" value="cloud"/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="collision" value="cloud"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="collision" value="cloud"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="collision" value="cloud"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="collision" value="cloud"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="collision" value="cloud"/>
+   </properties>
+  </tile>
+  <tile id="101">
+   <properties>
+    <property name="collision" value="ladder"/>
+   </properties>
+  </tile>
+  <tile id="110">
+   <properties>
+    <property name="collision" value="ladder"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Sky" width="50" height="13">
+  <properties>
+   <property name="parallax" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJybx8DAMI9KeDEQLwXiZUC8HIs8LQHMjllAPBuI5wDxXCr6jd7+AIXlEgb84YmMQf4m1b/08Ac5aYgY/w4mf5CT5rDpGWh/kJrmcOkZaH8MpXw+6o9Rf4z6Y9Qfg90fAIPk2Rw=
+  </data>
+ </layer>
+ <layer name="Platforms" width="50" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt0ssOwUAUBuBBXRbF2sZOKRYur8SSB8CuLCRY8MJ+MZOcjJnpoSMSmZN8aXva/p3TVohQoUL9ew0ghSGMYPzb5XxcU2nuKe/mKefd4syxgS3scrJ6kEBfPL8zlRp6qu/jf+DMkcEeDszMCcl9mEmmnlL0f6BzXA3nj3CCM1wYeR3xOodat96j54rOEUFVEznUoA4NKEGX7JehYrnPlZv3TI4mtAj9WNeGhcFSimUGRbNtPdM136LmWMPKso0t63GtkfP+bNR9dypaHPk=
+  </data>
+ </layer>
+ <layer name="Platforms 2" width="50" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjASQNtAOoBLIH2gHUAkMpD+olRZUgVgNiNWBWAOINYFYC4i1gViHSnbgA9RO0wZAbAjERkBsTGWz8YHhkqZHwfAEAFQGBIo=
+  </data>
+ </layer>
+ <layer name="Details" width="50" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUEAIdA+2AUTAKRgHNAK78PZGurhgFo2BwAgAjGQGi
+  </data>
+ </layer>
+ <layer name="Enemies" width="50" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4D6oBGImwbaEVQAXUDcPdCOGAWjYBSMglFAFOBEo4ciQHf7QPsFAKsdAj0=
+  </data>
+ </layer>
+ <layer name="Player" width="50" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGNlAaaAeMglEwSAEAc+AAIw==
+  </data>
+ </layer>
+ <layer name="Foreground" width="50" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMBBg0kA7YBRgBaPxMgpGAQIAAHFUASU=
+  </data>
+ </layer>
+</map>

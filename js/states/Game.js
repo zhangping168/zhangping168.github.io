@@ -2,11 +2,11 @@ var MGApp = MGApp || {};
 
 MGApp.GameState = {
 
-  init: function(level) {    
-	this.currentLevel = level || 'mainLevel';
+  init: function() {    
+
     //constants
     this.RUNNING_SPEED = 180;
-    this.JUMPING_SPEED = 800;
+    this.JUMPING_SPEED = 500;
 
     //gravity
     this.game.physics.arcade.gravity.y = 1000;    
@@ -24,10 +24,9 @@ MGApp.GameState = {
   update: function() {    
     this.game.physics.arcade.collide(this.player, this.collisionLayer); 
 	
-	this.game.physics.arcade.overlap(this.player, this.goal_1,this.changeLevel,null,this); 	
-
-	
-
+	//overlap between player and goals object
+    this.game.physics.arcade.overlap(this.player, this.goal,this.changeLevel,null,this); 
+      
     this.player.body.velocity.x = 0;
 
     if(this.cursors.left.isDown || this.player.customParams.isMovingLeft) {
@@ -51,68 +50,56 @@ MGApp.GameState = {
     }
   },
   
-  changeLevel:function(player,goal){
-	  this.currentLevel = goal.nextLevel;
-	  console.log(this.currentLevel);
-	  this.game.state.start('Game',true,false,this.currentLevel);
-  },
   loadLevel: function(){  
-	//create the tiledmap
-	this.map = this.add.tilemap(this.currentLevel);
-	//join the tileimageset with json data
-	this.map.addTilesetImage('tiles_spritesheet','gameTiles');
+	//Load tile map
+	this.map = this.add.tilemap('level_home');
 	
-	//load data from tilemap
-	var playerArr = this.findObjectsByType('player',this.map,'objectsLayer');
-	var goalArr = this.findObjectsByType('goal',this.map,'objectsLayer');
+	//join the tile sprite sheet with map data
+	this.map.addTilesetImage('platform_tiles01','gameTiles');
 	
+	//create tile map layers
+	this.backgroundLayer = this.map.createLayer('backgroundLayer');
+	this.collisionLayer = this.map.createLayer('collisionLayer');
+	this.waterLayer = this.map.createLayer('waterLayer');
+	this.decorationLayer = this.map.createLayer('decorationLayer');
+	
+	
+	//set backgroundLayer to the back
+	this.game.world.sendToBack(this.backgroundLayer);
+	
+	//set collision layer
+	this.map.setCollisionBetween(1,160,true,this.collisionLayer);
+	
+	//resize the world to fit the layer
+	this.backgroundLayer.resizeWorld();
+	
+      
+    //create goal objects
+      
+      var goalsArray = this.findObjectsByType('goal',this.map,'objectsLayer');
+      this.goal = this.add.sprite(goalsArray[0].x,goalsArray[0].y,'goal');
+      this.game.physics.arcade.enable(this.goal);
+      this.goal.body.allowGravity = false;
+      this.goal.nextLevel = goalsArray[0].properties.nextLevel;
+      
     //create player
-    this.player = this.add.sprite(playerArr[0].x, playerArr[0].y , 'player', 3);
+    var playerArray = this.findObjectsByType('player',this.map,'objectsLayer');
+      
+    this.player = this.add.sprite(playerArray[0].x, playerArray[0].y, 'player', 3);
     this.player.anchor.setTo(0.5);
     this.player.animations.add('walking', [0, 1, 2, 1], 6, true);
     this.game.physics.arcade.enable(this.player);
     this.player.customParams = {};
     this.player.body.collideWorldBounds = true;
     
-	
-	
-	
-	//create layers
-	this.backgroundLayer = this.map.createLayer('backgroundLayer');
-	this.collisionLayer = this.map.createLayer('collisionLayer');
-	//resize the world to fit the player
-	this.collisionLayer.resizeWorld();
-	
-	//send backgroundLayer to the back
-	this.game.world.sendToBack(this.backgroundLayer);
-
-	
-	//set the collision layer
-	this.map.setCollisionBetween(1,160,true,'collisionLayer');
-	
-	//create goals
-	this.goal_1 = this.add.sprite(goalArr[0].x,goalArr[0].y,'goal');
-	this.game.physics.arcade.enable(this.goal_1);
-	this.goal_1.body.allowGravity = false;
-	this.goal_1.nextLevel = goalArr[0].properties.nextLevel;
     
     //follow player with the camera
     this.game.camera.follow(this.player);
   },
-  
-  findObjectsByType: function(targetType,tilemap,layer){
-	  var results = [];
-	  tilemap.objects[layer].forEach(function(element){
-		  if(element.type == targetType){
-			  //tilemap y position from top left, in phaser from bottom left
-			  element.y -= tilemap.tileHeight;
-			  results.push(element);
-		  }
-	  },this);
-	  
-	  return results;
+  changeLevel:function(player,goal){
+      console.log(goal.nextLevel);
+      
   },
-  
   createOnscreenControls: function(){
     this.leftArrow = this.add.button(20, this.game.height - 60, 'arrowButton');
     this.rightArrow = this.add.button(110, this.game.height - 60, 'arrowButton');
@@ -167,5 +154,19 @@ MGApp.GameState = {
     this.rightArrow.events.onInputOut.add(function(){
       this.player.customParams.isMovingRight = false;
     }, this);
-  }  
+  },
+    
+  findObjectsByType: function(targetType,tilemap,layer){
+      var results = [];
+      
+      tilemap.objects[layer].forEach(function(element){
+          if(element.properties.type == targetType){
+              //in phaser Y position starts from top left, in tilemap Y position starts from bottom left
+              element.y -= tilemap.tileHeight;
+              results.push(element);
+          }
+      });
+      
+      return results;
+  }
 };
