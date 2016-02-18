@@ -2,8 +2,8 @@ var MGApp = MGApp || {};
 
 MGApp.GameState = {
 
-  init: function() {    
-
+  init: function(level) {    
+    this.currentLevel = level || 'level_home';  
     //constants
     this.RUNNING_SPEED = 180;
     this.JUMPING_SPEED = 500;
@@ -25,8 +25,17 @@ MGApp.GameState = {
     this.game.physics.arcade.collide(this.player, this.collisionLayer); 
 	
 	//overlap between player and goals object
-    this.game.physics.arcade.overlap(this.player, this.goal,this.changeLevel,null,this); 
-      
+	 if(this.currentLevel == 'level_home'){
+		this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
+		this.game.physics.arcade.overlap(this.player, this.goal_02,this.changeLevel,null,this);       
+		this.game.physics.arcade.overlap(this.player, this.goal_03,this.changeLevel,null,this); 
+		this.game.physics.arcade.overlap(this.player, this.goal_04,this.changeLevel,null,this);       
+	 };
+	 
+	 if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){
+		 this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
+	 };
+	 
     this.player.body.velocity.x = 0;
 
     if(this.cursors.left.isDown || this.player.customParams.isMovingLeft) {
@@ -52,7 +61,7 @@ MGApp.GameState = {
   
   loadLevel: function(){  
 	//Load tile map
-	this.map = this.add.tilemap('level_home');
+	this.map = this.add.tilemap(this.currentLevel);
 	
 	//join the tile sprite sheet with map data
 	this.map.addTilesetImage('platform_tiles01','gameTiles');
@@ -77,10 +86,23 @@ MGApp.GameState = {
     //create goal objects
       
       var goalsArray = this.findObjectsByType('goal',this.map,'objectsLayer');
-      this.goal = this.add.sprite(goalsArray[0].x,goalsArray[0].y,'goal');
+     
+	 if(this.currentLevel == 'level_home'){
+		this.goal_01=this.createObjectGoal(goalsArray[0]);
+		this.goal_02=this.createObjectGoal(goalsArray[1]);
+		this.goal_03=this.createObjectGoal(goalsArray[2]);
+		this.goal_04=this.createObjectGoal(goalsArray[3]); 
+	 }
+	 
+	 if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){
+		this.goal_01=this.createObjectGoal(goalsArray[0]);
+		
+	 }
+      
+      /*this.goal = this.add.sprite(goalsArray[0].x,goalsArray[0].y,'goal');
       this.game.physics.arcade.enable(this.goal);
       this.goal.body.allowGravity = false;
-      this.goal.nextLevel = goalsArray[0].properties.nextLevel;
+      this.goal.nextLevel = goalsArray[0].properties.nextLevel;*/
       
     //create player
     var playerArray = this.findObjectsByType('player',this.map,'objectsLayer');
@@ -96,8 +118,16 @@ MGApp.GameState = {
     //follow player with the camera
     this.game.camera.follow(this.player);
   },
-  changeLevel:function(player,goal){
-      console.log(goal.nextLevel);
+  createObjectGoal: function(goal){
+      var goalName = goal.properties.key;
+      this[goalName] = this.add.sprite(goal.x,goal.y,'goal');
+      this.game.physics.arcade.enable(this[goalName]);
+      this[goalName].body.allowGravity = false;
+      this[goalName].nextLevel = goal.properties.nextLevel;
+      return this[goalName];
+  },    
+  changeLevel: function(player,goal){
+      this.game.state.start('Game',true,false,goal.nextLevel);
       
   },
   createOnscreenControls: function(){

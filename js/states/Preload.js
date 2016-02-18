@@ -22,6 +22,10 @@ MGApp.PreloadState = {
 	//load tile map sprite sheet
 	this.load.image('gameTiles','assets/images/platform_tiles01.png');
 	this.load.tilemap('level_home','assets/levels/level_home.json',null,Phaser.Tilemap.TILED_JSON);
+	this.load.tilemap('level_01_about','assets/levels/level_01_about.json',null,Phaser.Tilemap.TILED_JSON);
+	this.load.tilemap('level_02_skills','assets/levels/level_02_skills.json',null,Phaser.Tilemap.TILED_JSON);
+	this.load.tilemap('level_03_works','assets/levels/level_03_works.json',null,Phaser.Tilemap.TILED_JSON);
+	this.load.tilemap('level_04_contact','assets/levels/level_04_contact.json',null,Phaser.Tilemap.TILED_JSON);
 
   },
   create: function() {
