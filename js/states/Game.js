@@ -57,6 +57,12 @@ MGApp.GameState = {
       this.player.body.velocity.y = -this.JUMPING_SPEED;
       this.player.customParams.mustJump = false;
     }
+	
+	//if player falls off the cliff, restar the game
+	if(this.player.bottom == this.game.world.height){
+		this.gameOver();
+	};
+	
   },
   
   loadLevel: function(){  
@@ -129,6 +135,9 @@ MGApp.GameState = {
   changeLevel: function(player,goal){
       this.game.state.start('Game',true,false,goal.nextLevel);
       
+  },
+  gameOver: function(){
+	this.game.state.start('Game',true,false,this.currentLevel);  
   },
   createOnscreenControls: function(){
     this.leftArrow = this.add.button(20, this.game.height - 60, 'arrowButton');
