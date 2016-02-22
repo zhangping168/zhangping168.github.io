@@ -13,11 +13,16 @@ MGApp.PreloadState = {
     //load game assets    
     
     this.load.image('goal', 'assets/images/goal.png');
-    
+	this.load.image('exit', 'assets/images/signExit.png');
+    this.load.image('popupPanel', 'assets/images/popup_panel.png');
+	
+	//load npc image
+	this.load.image('npc_01_about', 'assets/images/npc_01_about.png');
     this.load.spritesheet('player', 'assets/images/player_spritesheet.png', 28, 30, 5, 1, 1); 
     
-    this.load.image('arrowButton', 'assets/images/arrowButton.png');    
-    this.load.image('actionButton', 'assets/images/actionButton.png');    
+    this.load.image('arrowLeftButton', 'assets/images/controls/arrowLeftButton.png');    
+	this.load.image('arrowRightButton', 'assets/images/controls/arrowRightButton.png');    
+    this.load.image('actionButton', 'assets/images/controls/actionButton.png');    
 	
 	//load tile map sprite sheet
 	this.load.image('gameTiles','assets/images/platform_tiles01.png');

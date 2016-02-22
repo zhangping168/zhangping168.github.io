@@ -66,6 +66,9 @@ MGApp.GameState = {
   },
   
   loadLevel: function(){  
+	
+	
+	
 	//Load tile map
 	this.map = this.add.tilemap(this.currentLevel);
 	
@@ -92,7 +95,7 @@ MGApp.GameState = {
     //create goal objects
       
       var goalsArray = this.findObjectsByType('goal',this.map,'objectsLayer');
-     
+      var npcsArray = this.findObjectsByType('npc',this.map,'objectsLayer');
 	 if(this.currentLevel == 'level_home'){
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
 		this.goal_02=this.createObjectGoal(goalsArray[1]);
@@ -102,7 +105,7 @@ MGApp.GameState = {
 	 
 	 if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
-		
+		this.goal_02=this.createObjectGoal(npcsArray[0]);
 	 }
       
       /*this.goal = this.add.sprite(goalsArray[0].x,goalsArray[0].y,'goal');
@@ -123,10 +126,35 @@ MGApp.GameState = {
     
     //follow player with the camera
     this.game.camera.follow(this.player);
+	
+	//load popup text panel
+	this.popupPanel = this.add.image(this.game.world.centerX,this.game.world.centerY,'popupPanel');
+	this.popupPanel.anchor.setTo(0.5);
+	this.game.world.bringToTop(this.popupPanel);
+	
+	var style={
+		font:"1em 'KenVector Future Thin'",
+		fill:"#fff",
+		align:"left",
+		wordWrap:true,
+		wordWrapWidth:400
+	};
+	this.popupText = this.add.text(this.game.world.centerX,this.game.world.centerY,'popupPanel');
+	this.popupText.anchor.setTo(0.5);
   },
   createObjectGoal: function(goal){
       var goalName = goal.properties.key;
-      this[goalName] = this.add.sprite(goal.x,goal.y,'goal');
+	  var goalType = goal.properties.type;
+	  if(goalName == 'goal_home'){
+		  this[goalName] = this.add.sprite(goal.x,goal.y,'exit');
+		  this[goalName].anchor.setTo(0.5);
+	  }else if (goalName == 'npc_01_about' && goalType == 'npc'){
+		   //01_about state
+		  this[goalName] = this.add.sprite(goal.x,goal.y,'npc_01_about');
+	  }else{
+		  this[goalName] = this.add.sprite(goal.x,goal.y,'goal');
+	  };
+	  
       this.game.physics.arcade.enable(this[goalName]);
       this[goalName].body.allowGravity = false;
       this[goalName].nextLevel = goal.properties.nextLevel;
@@ -136,14 +164,17 @@ MGApp.GameState = {
       this.game.state.start('Game',true,false,goal.nextLevel);
       
   },
+  talkToNpc: function(){
+	console.log('Hi,Npc');  
+  },
   gameOver: function(){
 	this.game.state.start('Game',true,false,this.currentLevel);  
   },
   createOnscreenControls: function(){
-    this.leftArrow = this.add.button(20, this.game.height - 60, 'arrowButton');
-    this.rightArrow = this.add.button(110, this.game.height - 60, 'arrowButton');
-    this.actionButton = this.add.button(this.game.width - 100, this.game.height - 60, 'actionButton');
-
+    this.leftArrow = this.add.button(20, this.game.height - 100, 'arrowLeftButton');
+    this.rightArrow = this.add.button(150, this.game.height - 100, 'arrowRightButton');
+    this.actionButton = this.add.button(this.game.width - 100, this.game.height - 100, 'actionButton');
+	
     this.leftArrow.alpha = 0.5;
     this.rightArrow.alpha = 0.5;
     this.actionButton.alpha = 0.5;
