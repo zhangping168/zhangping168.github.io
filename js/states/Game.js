@@ -107,7 +107,7 @@ MGApp.GameState = {
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
 		this.goal_02=this.createObjectGoal(npcsArray[0]);
 	 }
-      
+     this.loadDialog(this.currentLevel);
       /*this.goal = this.add.sprite(goalsArray[0].x,goalsArray[0].y,'goal');
       this.game.physics.arcade.enable(this.goal);
       this.goal.body.allowGravity = false;
@@ -128,19 +128,16 @@ MGApp.GameState = {
     this.game.camera.follow(this.player);
 	
 	//load popup text panel
-	this.popupPanel = this.add.image(this.game.world.centerX,this.game.world.centerY,'popupPanel');
-	this.popupPanel.anchor.setTo(0.5);
-	this.game.world.bringToTop(this.popupPanel);
 	
-	var style={
-		font:"1em 'KenVector Future Thin'",
-		fill:"#fff",
-		align:"left",
-		wordWrap:true,
-		wordWrapWidth:400
-	};
-	this.popupText = this.add.text(this.game.world.centerX,this.game.world.centerY,'popupPanel');
-	this.popupText.anchor.setTo(0.5);
+  },
+  
+  loadDialog: function(level){
+	  var dialog = document.getElementById('dialog');
+	  if(level == 'level_01_about'){
+		 dialog.className += 'dialog';
+	 }else{
+		 dialog.classList.remove('dialog');
+	 }
   },
   createObjectGoal: function(goal){
       var goalName = goal.properties.key;

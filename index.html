@@ -14,17 +14,32 @@
 		  	background-color: black;
 		    padding: 0px;
 		    margin: 0px;
+			color:#fff;
+			text-align:center;	
 		  }
 		  
 		  @font-face{
 			font-family:'KenVector Future Thin';
 			src:url('assets/fonts/ken-fonts/kenvector_future_thin.ttf');
 		  }
+		  .dialog{
+			border:1px solid #000;
+			background:#000;
+			font:2em 'KenVector Future Thin';
+			position:absolute;
+			top:calc(50% - 3em);
+			left:calc(50% - 9em);
+			width:18em;
+			height:6em;
+			opacity:0.6;
+			
+		  }
 		  </style>
 	</head>
 
 	<body>  
-		<div style="font:'KenVector Future Thin';">.</div>
+		<div style="font:'KenVector Future Thin';"></div>
+		<div id="dialog">ddd</div>
 		<script type="text/javascript" src="js/phaser.js"></script>
 		<script type="text/javascript" src="js/states/Boot.js"></script>
 		<script type="text/javascript" src="js/states/Preload.js"></script>
