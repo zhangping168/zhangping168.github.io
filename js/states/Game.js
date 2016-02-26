@@ -144,11 +144,11 @@ MGApp.GameState = {
 	 this.cursorHandPrev = this.add.button(this.panel01.left+50,this.panel01.bottom-30,'cursorHandPrev');
 	 this.cursorHandPrev.anchor.setTo(0.5);
 	
-	 var style = { font: "14px Arial", fill: "#000", wordWrap: true, wordWrapWidth: 340, align: "center"};
+	 var style = { font: "1.5em Arial", fill: "#000", wordWrap: true, wordWrapWidth: 340, align: "center"};
    	 var x = this.panel01.left + 40;
 	 var y = this.panel01.top + 40;
 	 this.dialogText = this.add.text(x,y,this.level_01_content.content[0].text,style);
-	 
+	 	 
 	 var count = 0;
 	 var len = this.level_01_content.content.length;
 	  
@@ -164,7 +164,7 @@ MGApp.GameState = {
 		this.cursorHandNext.visible = false;
 		this.cursorHandPrev.visible = true;
 	  }
-	  console.log(count);
+	  
     }, this);
 	
 	
@@ -181,7 +181,7 @@ MGApp.GameState = {
 		this.cursorHandPrev.visible = false;
 		this.cursorHandNext.visible = true;
 	  }
-	  console.log(count);
+	  
     }, this);
 	
     
