@@ -35,6 +35,7 @@ MGApp.GameState = {
 	 
 	 if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){
 		 this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
+		 this.goal_02.animations.play('greeting');
 	 };
 	 
     this.player.body.velocity.x = 0;
@@ -106,9 +107,12 @@ MGApp.GameState = {
 		this.goal_04=this.createObjectGoal(goalsArray[3]); 
 	 }
 	 
-	 if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){
+	 /*if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){*/
+	if(this.currentLevel == 'level_01_about'){	 
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
-		this.goal_02=this.createObjectGoal(npcsArray[0]);
+		this.goal_02=this.createObjectGoal(npcsArray[0]); //player_02.png character
+		this.goal_02.animations.add('greeting',[0,1,2,2,1,0],6,true);
+		
 	 }
      this.loadDialog(this.currentLevel);
       /*this.goal = this.add.sprite(goalsArray[0].x,goalsArray[0].y,'goal');
@@ -196,7 +200,7 @@ MGApp.GameState = {
 	  }else if (goalName == 'npc_01_about' && goalType == 'npc'){
 		   //01_about state
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'npc_01_about');
-		  this[goalName].scale.setTo(0.5);
+		  this[goalName].scale.setTo(1);
 	  }else{
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'goal');
 	  };

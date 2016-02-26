@@ -1,6 +1,6 @@
 var MGApp = MGApp || {};
 
-MGApp.dim = MGApp.getGameLandscapeDimensions(864,800);
+MGApp.dim = MGApp.getGameLandscapeDimensions(864,640);
 MGApp.game = new Phaser.Game(MGApp.dim.w, MGApp.dim.h, Phaser.AUTO);
 
 
