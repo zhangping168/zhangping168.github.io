@@ -149,8 +149,8 @@ MGApp.GameState = {
 	 this.cursorHandPrev.anchor.setTo(0.5);
 	
 	 var style = { font: "1.5em Arial", fill: "#000", wordWrap: true, wordWrapWidth: 340, align: "center"};
-   	 var x = this.panel01.left + 40;
-	 var y = this.panel01.top + 40;
+   	 var x = Math.round(this.panel01.left + 40);
+	 var y = Math.round(this.panel01.top + 40);
 	 this.dialogText = this.add.text(x,y,this.level_01_content.content[0].text,style);
 	 	 
 	 var count = 0;
