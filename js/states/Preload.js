@@ -15,6 +15,9 @@ MGApp.PreloadState = {
     this.load.image('goal', 'assets/images/goal.png');
 	this.load.image('exit', 'assets/images/signExit.png');
     this.load.image('popupPanel', 'assets/images/popup_panel.png');
+	this.load.image('panel01', 'assets/images/panel01.png');
+	this.load.image('cursorHandPrev', 'assets/images/arrowBrown_left.png');
+	this.load.image('cursorHandNext', 'assets/images/arrowBrown_right.png');
 	
 	//load npc image
 	this.load.image('npc_01_about', 'assets/images/npc_01_about.png');
@@ -23,6 +26,9 @@ MGApp.PreloadState = {
     this.load.image('arrowLeftButton', 'assets/images/controls/arrowLeftButton.png');    
 	this.load.image('arrowRightButton', 'assets/images/controls/arrowRightButton.png');    
     this.load.image('actionButton', 'assets/images/controls/actionButton.png');    
+	
+	//load dialog json file
+	this.load.text('level_01_content','assets/data/level_01_content.json');
 	
 	//load tile map sprite sheet
 	this.load.image('gameTiles','assets/images/platform_tiles01.png');

@@ -3,6 +3,7 @@ var MGApp = MGApp || {};
 MGApp.GameState = {
 
   init: function(level) {    
+	var level = 'level_01_about';
     this.currentLevel = level || 'level_home';  
     //constants
     this.RUNNING_SPEED = 180;
@@ -68,7 +69,9 @@ MGApp.GameState = {
   loadLevel: function(){  
 	
 	
-	
+	//parse json data for each level
+	this.level_01_content = JSON.parse(this.game.cache.getText('level_01_content'));
+	console.log(this.level_01_content);
 	//Load tile map
 	this.map = this.add.tilemap(this.currentLevel);
 	
@@ -132,12 +135,57 @@ MGApp.GameState = {
   },
   
   loadDialog: function(level){
-	  var dialog = document.getElementById('dialog');
-	  if(level == 'level_01_about'){
-		 dialog.className += 'dialog';
-	 }else{
-		 dialog.classList.remove('dialog');
-	 }
+	 this.panel01 = this.add.sprite(this.game.world.centerX,this.game.world.centerY-30,'panel01');
+	 this.panel01.anchor.setTo(0.5);
+	 
+	 this.cursorHandNext = this.add.button(this.panel01.right-50,this.panel01.bottom-30,'cursorHandNext');
+	 this.cursorHandNext.anchor.setTo(0.5);
+	 
+	 this.cursorHandPrev = this.add.button(this.panel01.left+50,this.panel01.bottom-30,'cursorHandPrev');
+	 this.cursorHandPrev.anchor.setTo(0.5);
+	
+	 var style = { font: "14px Arial", fill: "#000", wordWrap: true, wordWrapWidth: 340, align: "center"};
+   	 var x = this.panel01.left + 40;
+	 var y = this.panel01.top + 40;
+	 this.dialogText = this.add.text(x,y,this.level_01_content.content[0].text,style);
+	 
+	 var count = 0;
+	 var len = this.level_01_content.content.length;
+	  
+	 this.cursorHandNext.events.onInputDown.add(function(){
+	  
+	  count++;
+	  
+	  if(count < len){
+		  
+		  this.dialogText.text = this.level_01_content.content[count].text;
+	  }else{
+		count = 2;  
+		this.cursorHandNext.visible = false;
+		this.cursorHandPrev.visible = true;
+	  }
+	  console.log(count);
+    }, this);
+	
+	
+	
+	this.cursorHandPrev.events.onInputDown.add(function(){
+	 
+	  count--;
+	  
+	  if(count >= 0){
+		 
+		  this.dialogText.text = this.level_01_content.content[count].text;
+	  }else{
+		count = 0;  
+		this.cursorHandPrev.visible = false;
+		this.cursorHandNext.visible = true;
+	  }
+	  console.log(count);
+    }, this);
+	
+    
+
   },
   createObjectGoal: function(goal){
       var goalName = goal.properties.key;
@@ -148,6 +196,7 @@ MGApp.GameState = {
 	  }else if (goalName == 'npc_01_about' && goalType == 'npc'){
 		   //01_about state
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'npc_01_about');
+		  this[goalName].scale.setTo(0.5);
 	  }else{
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'goal');
 	  };

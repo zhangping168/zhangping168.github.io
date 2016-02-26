@@ -1,3 +1,4 @@
+******************************************
 1.game title screen,web font,style and size
 2. touch to start
 3.aim to mobile
@@ -6,6 +7,9 @@
 6.rpg story telling?
 7.font size to read on mobile screen
 8.music?
+9. inline style, rewrite with SASS later
+
+******************************************
 
 Plan for each level,structure and major functions fist, adding decoration details at last.
 Level_home
