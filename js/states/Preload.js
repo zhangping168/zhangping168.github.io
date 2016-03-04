@@ -19,6 +19,8 @@ MGApp.PreloadState = {
 	this.load.image('cursorHandPrev', 'assets/images/arrowBrown_left.png');
 	this.load.image('cursorHandNext', 'assets/images/arrowBrown_right.png');
 	
+	this.load.image('skillsBox', 'assets/images/skills_box.png');
+	
 	//load npc image
 	//this.load.image('npc_01_about', 'assets/images/npc_01_about.png');
 	this.load.spritesheet('npc_01_about', 'assets/images/player_02.png', 30, 45, 6, 1, 1); 

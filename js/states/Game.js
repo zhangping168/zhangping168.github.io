@@ -3,11 +3,15 @@ var MGApp = MGApp || {};
 MGApp.GameState = {
 
   init: function(level) {    
-	var level = 'level_01_about';
+	//var level = 'level_01_about'; //temp level,remove it later
+	var level = 'level_02_skills';
     this.currentLevel = level || 'level_home';  
     //constants
     this.RUNNING_SPEED = 180;
     this.JUMPING_SPEED = 500;
+	
+	this.SKillSBOX_FREQ = 2;
+	this.SKillSBOX_SPEED = 60;
 
     //gravity
     this.game.physics.arcade.gravity.y = 1000;    
@@ -24,6 +28,7 @@ MGApp.GameState = {
   },   
   update: function() {    
     this.game.physics.arcade.collide(this.player, this.collisionLayer); 
+	this.game.physics.arcade.collide(this.skillsBoxes, this.collisionLayer); 
 	
 	//overlap between player and goals object
 	 if(this.currentLevel == 'level_home'){
@@ -33,11 +38,23 @@ MGApp.GameState = {
 		this.game.physics.arcade.overlap(this.player, this.goal_04,this.changeLevel,null,this);       
 	 };
 	 
-	 if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){
+	 //if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){
+		if(this.currentLevel == 'level_01_about'){	 
 		 this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
 		 this.goal_02.animations.play('greeting');
-	 };
-	 
+		};
+		 if(this.currentLevel == 'level_02_skills'){	 
+			 this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
+			 this.goal_02.animations.play('greeting');	
+			 
+			 this.skillsBoxes.forEach(function(element){
+				if(element.y > this.game.world.height - 64){
+					element.kill();
+				}
+			},this);
+			
+		 };
+		 
     this.player.body.velocity.x = 0;
 
     if(this.cursors.left.isDown || this.player.customParams.isMovingLeft) {
@@ -65,6 +82,8 @@ MGApp.GameState = {
 		this.gameOver();
 	};
 	
+
+	
   },
   
   loadLevel: function(){  
@@ -72,7 +91,7 @@ MGApp.GameState = {
 	
 	//parse json data for each level
 	this.level_01_content = JSON.parse(this.game.cache.getText('level_01_content'));
-	console.log(this.level_01_content);
+	
 	//Load tile map
 	this.map = this.add.tilemap(this.currentLevel);
 	
@@ -99,6 +118,7 @@ MGApp.GameState = {
     //create goal objects
       
       var goalsArray = this.findObjectsByType('goal',this.map,'objectsLayer');
+	  //console.log(goalsArray);
       var npcsArray = this.findObjectsByType('npc',this.map,'objectsLayer');
 	 if(this.currentLevel == 'level_home'){
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
@@ -108,13 +128,30 @@ MGApp.GameState = {
 	 }
 	 
 	 /*if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){*/
-	if(this.currentLevel == 'level_01_about'){	 
+	if(this.currentLevel == 'level_01_about' ){	 
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
 		this.goal_02=this.createObjectGoal(npcsArray[0]); //player_02.png character
 		this.goal_02.animations.add('greeting',[0,1,2,2,1,0],6,true);
 		
 	 }
-     this.loadDialog(this.currentLevel);
+	 
+	 if(this.currentLevel == 'level_02_skills' ){	 
+		this.goal_01=this.createObjectGoal(goalsArray[0]);
+		this.goal_02=this.createObjectGoal(npcsArray[0]); //player_02.png character
+		this.goal_02.scale.setTo(-1,1);
+		this.goal_02.animations.add('greeting',[3,4,5,4],6,true);
+		this.npc = this.goal_02;
+		
+		//create skills popup 
+		this.skillsBoxes = this.add.group();
+		this.skillsBoxes.enableBody = true;
+		
+		this.createSkillsBox();
+		
+		this.skillsBoxCreator = this.game.time.events.loop(Phaser.Timer.SECOND * this.SKillSBOX_FREQ,this.createSkillsBox,this);		
+		
+	 }
+     if(this.currentLevel == 'level_01_about'){this.loadDialog(this.currentLevel);}
       /*this.goal = this.add.sprite(goalsArray[0].x,goalsArray[0].y,'goal');
       this.game.physics.arcade.enable(this.goal);
       this.goal.body.allowGravity = false;
@@ -125,7 +162,9 @@ MGApp.GameState = {
       
     this.player = this.add.sprite(playerArray[0].x, playerArray[0].y, 'player', 3);
     this.player.anchor.setTo(0.5);
-    this.player.animations.add('walking', [0, 1, 2, 1], 6, true);
+    if(this.currentLevel == 'level_01_about'){this.loadDialog(this.currentLevel);}
+	
+	this.player.animations.add('walking', [0, 1, 2, 1], 6, true);
     this.game.physics.arcade.enable(this.player);
     this.player.customParams = {};
     this.player.body.collideWorldBounds = true;
@@ -136,6 +175,22 @@ MGApp.GameState = {
 	
 	//load popup text panel
 	
+	
+	
+  },
+  
+  createSkillsBox: function(){
+	  //get the first dead sprite of the group
+	  var skillsBox = this.skillsBoxes.getFirstExists(false);
+	  if(!skillsBox){ //if not exist/game just start, then create one
+		  skillsBox = this.skillsBoxes.create(this.npc.position.x,this.npc.position.y,'skillsBox');
+	  }
+	  
+	  skillsBox.body.collideWorldBounds = true;
+	  skillsBox.body.bounce.set(1,0);
+	  //if exist, reset the position of the sprite
+	  skillsBox.reset(this.npc.position.x,this.npc.position.y);
+	  skillsBox.body.velocity.x = this.SKillSBOX_SPEED;
   },
   
   loadDialog: function(level){
@@ -201,6 +256,10 @@ MGApp.GameState = {
 		   //01_about state
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'npc_01_about');
 		  this[goalName].scale.setTo(1);
+	  }else if (goalName == 'npc_02_skills' && goalType == 'npc'){
+		   //01_about state
+		  this[goalName] = this.add.sprite(goal.x,goal.y,'npc_01_about');
+		  this[goalName].anchor.setTo(0.5);
 	  }else{
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'goal');
 	  };
