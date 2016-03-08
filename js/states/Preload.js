@@ -33,6 +33,7 @@ MGApp.PreloadState = {
 	
 	//load dialog json file
 	this.load.text('level_01_content','assets/data/level_01_content.json');
+	this.load.text('level_02_content','assets/data/level_02_content.json');
 	
 	//load tile map sprite sheet
 	this.load.image('gameTiles','assets/images/platform_tiles01.png');

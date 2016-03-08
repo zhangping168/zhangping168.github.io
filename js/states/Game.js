@@ -10,8 +10,8 @@ MGApp.GameState = {
     this.RUNNING_SPEED = 180;
     this.JUMPING_SPEED = 500;
 	
-	this.SKillSBOX_FREQ = 2;
-	this.SKillSBOX_SPEED = 60;
+	this.SKillSBOX_FREQ = 1;
+	this.SKillSBOX_SPEED = -20;
 
     //gravity
     this.game.physics.arcade.gravity.y = 1000;    
@@ -22,10 +22,24 @@ MGApp.GameState = {
   create: function() {
     //load current level
     this.loadLevel();
+	
+	//create npc text
     
     //show on-screen touch controls
     this.createOnscreenControls();    
-  },   
+  },
+  
+  createNpcText: function(levelData){
+    var  content = levelData.content;
+	var style = { font: "1.2em Arial", fill: "#f00", wordWrap: true,align: "center"};
+	
+   	 content.forEach(function(element){
+	 
+	 this.add.text(0,0,element.text,style,this.skillsBoxes);
+	 },this);
+	 
+	
+  },  
   update: function() {    
     this.game.physics.arcade.collide(this.player, this.collisionLayer); 
 	this.game.physics.arcade.collide(this.skillsBoxes, this.collisionLayer); 
@@ -48,7 +62,7 @@ MGApp.GameState = {
 			 this.goal_02.animations.play('greeting');	
 			 
 			 this.skillsBoxes.forEach(function(element){
-				if(element.y > this.game.world.height - 64){
+				if(element.x < 10){
 					element.kill();
 				}
 			},this);
@@ -90,7 +104,7 @@ MGApp.GameState = {
 	
 	
 	//parse json data for each level
-	this.level_01_content = JSON.parse(this.game.cache.getText('level_01_content'));
+	
 	
 	//Load tile map
 	this.map = this.add.tilemap(this.currentLevel);
@@ -132,15 +146,17 @@ MGApp.GameState = {
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
 		this.goal_02=this.createObjectGoal(npcsArray[0]); //player_02.png character
 		this.goal_02.animations.add('greeting',[0,1,2,2,1,0],6,true);
-		
+		this.level_01_content = JSON.parse(this.game.cache.getText('level_01_content'));
 	 }
 	 
 	 if(this.currentLevel == 'level_02_skills' ){	 
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
 		this.goal_02=this.createObjectGoal(npcsArray[0]); //player_02.png character
-		this.goal_02.scale.setTo(-1,1);
+		this.goal_02.scale.setTo(1,1);
 		this.goal_02.animations.add('greeting',[3,4,5,4],6,true);
 		this.npc = this.goal_02;
+		
+		
 		
 		//create skills popup 
 		this.skillsBoxes = this.add.group();
@@ -148,7 +164,10 @@ MGApp.GameState = {
 		
 		this.createSkillsBox();
 		
-		this.skillsBoxCreator = this.game.time.events.loop(Phaser.Timer.SECOND * this.SKillSBOX_FREQ,this.createSkillsBox,this);		
+		this.skillsBoxCreator = this.game.time.events.loop(Phaser.Timer.SECOND * this.SKillSBOX_FREQ,this.createSkillsBox,this);
+
+		this.level_02_content = JSON.parse(this.game.cache.getText('level_02_content'));
+		this.createNpcText(this.level_02_content);	
 		
 	 }
      if(this.currentLevel == 'level_01_about'){this.loadDialog(this.currentLevel);}
@@ -260,6 +279,7 @@ MGApp.GameState = {
 		   //01_about state
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'npc_01_about');
 		  this[goalName].anchor.setTo(0.5);
+
 	  }else{
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'goal');
 	  };
