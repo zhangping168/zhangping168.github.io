@@ -2,21 +2,20 @@
 	"content":[
 	{"text":"HTML5"},
 	{"text":"CSS3"},
-	{"text":"Javascript"},
-	{"text":"jQuery"},
-	{"text":"Ajax"},
-	{"text":"AngularJS"},
+	{"text":"jQuery/JavaScript/Ajax"},
 	{"text":"SASS"},
-	{"text":"Grunt"},
-	{"text":"Node.js"},
+	{"text":"AngularJS"},
+	{"text":"Node.js/Bower/Grunt"},
 	{"text":"Bootstrap/Ionic"},
-	{"text":"Responsive Web Design"},
-	{"text":"Web Development"},
-	{"text":"Wordpress"},
-	{"text":"PHP"},
-	{"text":"Version Control"},
-	{"text":"Git"},
+	{"text":"Responsive Design"},
+	{"text":"Mobile Development"},
+	{"text":"PHP/Wordpress"},
+	{"text":"Git/SVN"},
+	{"text":"Java"},
 	{"text":"MySQL"},	
+	{"text":"SEO"},
+	{"text":"Photoshop"},
+	
 	{"text":"PhaserJS"}
 	]
 }

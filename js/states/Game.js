@@ -10,7 +10,7 @@ MGApp.GameState = {
     this.RUNNING_SPEED = 180;
     this.JUMPING_SPEED = 500;
 	
-	this.SKillSBOX_FREQ = 2;
+	this.SKillSBOX_FREQ = 2.5;
 	this.SKillSBOX_SPEED = -80;
 
     //gravity
@@ -31,12 +31,15 @@ MGApp.GameState = {
   
   createNpcText: function(levelData){
     var  content = levelData.content;
-	var style = { font: "1.2em Arial", fill: "#f00", wordWrap: true,align: "center"};
+	var style = { font: "1.2em Arial", fill: "#f00", wordWrap: false,align: "left"};
 	
    	 content.forEach(function(element){
 	 
-	 this.add.text(0,0,element.text,style,this.skillsBoxes);
+	 var npcText = this.add.text(0,0,element.text,style,this.skillsBoxes);
+	 npcText.resolution = 1;
 	 },this);
+	 
+	 
 	 
 	
   },  
@@ -164,7 +167,13 @@ MGApp.GameState = {
 		this.npc = this.goal_02;
 		
 		
-		
+		 var style = { font: "65px Arial", fill: "#000", align: "center" };
+
+		 var text = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "- Skillset-\n And \nWorking Knowledge", style);
+
+         text.anchor.set(0.5);
+		 text.alpha=0.4;
+		 text.resolution = 1;
 		//create skills popup 
 		this.skillsBoxes = this.add.group();
 		this.skillsBoxes.enableBody = true;
