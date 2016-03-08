@@ -4,7 +4,8 @@ MGApp.GameState = {
 
   init: function(level) {    
 	//var level = 'level_01_about'; //temp level,remove it later
-	var level = 'level_02_skills';
+	//var level = 'level_02_skills';
+	var level = 'level_03_works';
     this.currentLevel = level || 'level_home';  
     //constants
     this.RUNNING_SPEED = 180;
@@ -60,7 +61,9 @@ MGApp.GameState = {
 		 this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
 		 this.goal_02.animations.play('greeting');
 		};
-		 if(this.currentLevel == 'level_02_skills'){	 
+		//end level_01_about
+		
+		if(this.currentLevel == 'level_02_skills'){	 
 			 this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
 			 this.game.physics.arcade.overlap(this.player, this.skillsBoxes,this.getSkills,null,this); 
 			 
@@ -75,6 +78,18 @@ MGApp.GameState = {
 			},this);
 			
 		 };
+		 //end level_02_skills
+		 
+	if(this.currentLevel == 'level_03_works'){
+		this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
+		this.game.physics.arcade.overlap(this.player, this.goal_02,this.showWorks,null,this);       
+		this.game.physics.arcade.overlap(this.player, this.goal_03,this.showWorks,null,this); 
+		this.game.physics.arcade.overlap(this.player, this.goal_04,this.showWorks,null,this);   
+		this.game.physics.arcade.overlap(this.player, this.goal_05,this.showWorks,null,this);   
+			
+	 };
+	 //end level_03_works
+	 
 		 
     this.player.body.velocity.x = 0;
 
@@ -106,6 +121,23 @@ MGApp.GameState = {
 
 	
   },
+  
+  showWorks: function(player, works){
+	var box = works.key;
+	if(box =='box01'){
+		this.dialogText.text = this.level_03_content.content[0].text;
+	}else if(box =='box02'){
+		this.dialogText.text = this.level_03_content.content[1].text;
+	}
+	else if(box =='box03'){
+		this.dialogText.text = this.level_03_content.content[2].text;
+	}
+	else if(box =='box04'){
+		this.dialogText.text = this.level_03_content.content[3].text;
+	}
+	else{}
+  },
+  
   getSkills: function(player,skills){
 	player.position.x -= 10;
 	
@@ -186,6 +218,18 @@ MGApp.GameState = {
 		this.createNpcText(this.level_02_content);	
 		
 	 }
+	 
+	 if(this.currentLevel == 'level_03_works' ){
+	 console.log(goalsArray);
+		this.goal_01=this.createObjectGoal(goalsArray[0]);
+		this.goal_02=this.createObjectGoal(goalsArray[1]);
+		this.goal_03=this.createObjectGoal(goalsArray[2]);
+		this.goal_04=this.createObjectGoal(goalsArray[3]); 
+		this.goal_05=this.createObjectGoal(goalsArray[4]);
+		this.level_03_content = JSON.parse(this.game.cache.getText('level_03_content'));
+		this.loadDialog(this.currentLevel);
+	 }
+	 
      if(this.currentLevel == 'level_01_about'){this.loadDialog(this.currentLevel);}
       /*this.goal = this.add.sprite(goalsArray[0].x,goalsArray[0].y,'goal');
       this.game.physics.arcade.enable(this.goal);
@@ -229,22 +273,21 @@ MGApp.GameState = {
   },
   
   loadDialog: function(level){
+	  var level_content;
+	  
 	 this.panel01 = this.add.sprite(this.game.world.centerX,this.game.world.centerY-30,'panel01');
 	 this.panel01.anchor.setTo(0.5);
 	 
-	 this.cursorHandNext = this.add.button(this.panel01.right-50,this.panel01.bottom-30,'cursorHandNext');
-	 this.cursorHandNext.anchor.setTo(0.5);
-	 
-	 this.cursorHandPrev = this.add.button(this.panel01.left+50,this.panel01.bottom-30,'cursorHandPrev');
-	 this.cursorHandPrev.anchor.setTo(0.5);
-	
-	 var style = { font: "1.5em Arial", fill: "#000", wordWrap: true, wordWrapWidth: 340, align: "center"};
-   	 var x = Math.round(this.panel01.left + 40);
-	 var y = Math.round(this.panel01.top + 40);
-	 this.dialogText = this.add.text(x,y,this.level_01_content.content[0].text,style);
-	 	 
-	 var count = 0;
-	 var len = this.level_01_content.content.length;
+	  if(level =='level_01_about'){
+		level_content = this.level_01_content;
+		this.cursorHandNext = this.add.button(this.panel01.right-50,this.panel01.bottom-30,'cursorHandNext');
+		 this.cursorHandNext.anchor.setTo(0.5);
+		 
+		 this.cursorHandPrev = this.add.button(this.panel01.left+50,this.panel01.bottom-30,'cursorHandPrev');
+		 this.cursorHandPrev.anchor.setTo(0.5);
+		 
+		 var count = 0;
+	 var len = level_content.content.length;
 	  
 	 this.cursorHandNext.events.onInputDown.add(function(){
 	  
@@ -252,7 +295,7 @@ MGApp.GameState = {
 	  
 	  if(count < len){
 		  
-		  this.dialogText.text = this.level_01_content.content[count].text;
+		  this.dialogText.text = level_content.content[count].text;
 	  }else{
 		count = 2;  
 		this.cursorHandNext.visible = false;
@@ -278,12 +321,29 @@ MGApp.GameState = {
 	  
     }, this);
 	
+	
+		 
+	  }else if(level =='level_03_works'){
+		level_content = this.level_03_content;
+	  }else{
+	  };
+  
+ 
+	 var style = { font: "1.5em Arial", fill: "#000", wordWrap: true, wordWrapWidth: 340, align: "center"};
+   	 var x = Math.round(this.panel01.left + 40);
+	 var y = Math.round(this.panel01.top + 40);
+	 this.dialogText = this.add.text(x,y,level_content.content[0].text,style);
+	 	 
+	 if(level =='level_03_works'){
+		this.dialogText.text=level_content.intro;
+	 }
     
 
   },
   createObjectGoal: function(goal){
       var goalName = goal.properties.key;
 	  var goalType = goal.properties.type;
+	  var goalSrc = goal.properties.src;
 	  if(goalName == 'goal_home'){
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'exit');
 		  this[goalName].anchor.setTo(0.5);
@@ -294,6 +354,11 @@ MGApp.GameState = {
 	  }else if (goalName == 'npc_02_skills' && goalType == 'npc'){
 		   //01_about state
 		  this[goalName] = this.add.sprite(goal.x,goal.y,'npc_01_about');
+		  this[goalName].anchor.setTo(0.5);
+
+	  }else if (goalSrc){
+		   //01_about state
+		  this[goalName] = this.add.sprite(goal.x,goal.y,goalSrc);
 		  this[goalName].anchor.setTo(0.5);
 
 	  }else{

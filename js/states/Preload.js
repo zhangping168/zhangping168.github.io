@@ -21,6 +21,11 @@ MGApp.PreloadState = {
 	
 	this.load.image('skillsBox', 'assets/images/skills_box.png');
 	
+	//load box images
+	this.load.image('box01', 'assets/images/box/box01.png');
+	this.load.image('box02', 'assets/images/box/box02.png');
+	this.load.image('box03', 'assets/images/box/box03.png');
+	this.load.image('box04', 'assets/images/box/box04.png');
 	//load npc image
 	//this.load.image('npc_01_about', 'assets/images/npc_01_about.png');
 	this.load.spritesheet('npc_01_about', 'assets/images/player_02.png', 30, 45, 6, 1, 1); 
@@ -34,6 +39,7 @@ MGApp.PreloadState = {
 	//load dialog json file
 	this.load.text('level_01_content','assets/data/level_01_content.json');
 	this.load.text('level_02_content','assets/data/level_02_content.json');
+	this.load.text('level_03_content','assets/data/level_03_content.json');
 	
 	//load tile map sprite sheet
 	this.load.image('gameTiles','assets/images/platform_tiles01.png');
