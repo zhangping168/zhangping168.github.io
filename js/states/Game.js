@@ -10,8 +10,8 @@ MGApp.GameState = {
     this.RUNNING_SPEED = 180;
     this.JUMPING_SPEED = 500;
 	
-	this.SKillSBOX_FREQ = 1;
-	this.SKillSBOX_SPEED = -20;
+	this.SKillSBOX_FREQ = 2;
+	this.SKillSBOX_SPEED = -80;
 
     //gravity
     this.game.physics.arcade.gravity.y = 1000;    
@@ -59,10 +59,14 @@ MGApp.GameState = {
 		};
 		 if(this.currentLevel == 'level_02_skills'){	 
 			 this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
+			 this.game.physics.arcade.overlap(this.player, this.skillsBoxes,this.getSkills,null,this); 
+			 
 			 this.goal_02.animations.play('greeting');	
 			 
 			 this.skillsBoxes.forEach(function(element){
+			 
 				if(element.x < 10){
+				
 					element.kill();
 				}
 			},this);
@@ -99,7 +103,10 @@ MGApp.GameState = {
 
 	
   },
-  
+  getSkills: function(player,skills){
+	player.position.x -= 10;
+	
+  },
   loadLevel: function(){  
 	
 	

@@ -1,7 +1,22 @@
 {
 	"content":[
+	{"text":"HTML5"},
 	{"text":"CSS3"},
-	{"text":"JavaScript "},
-	{"text":"G"}
+	{"text":"Javascript"},
+	{"text":"jQuery"},
+	{"text":"Ajax"},
+	{"text":"AngularJS"},
+	{"text":"SASS"},
+	{"text":"Grunt"},
+	{"text":"Node.js"},
+	{"text":"Bootstrap/Ionic"},
+	{"text":"Responsive Web Design"},
+	{"text":"Web Development"},
+	{"text":"Wordpress"},
+	{"text":"PHP"},
+	{"text":"Version Control"},
+	{"text":"Git"},
+	{"text":"MySQL"},	
+	{"text":"PhaserJS"}
 	]
 }
