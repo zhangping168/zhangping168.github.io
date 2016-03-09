@@ -154,6 +154,24 @@
                  "width":35,
                  "x":547,
                  "y":573.667
+                }, 
+                {
+                 "gid":319,
+                 "height":35,
+                 "id":56,
+                 "name":"",
+                 "properties":
+                    {
+                     "key":"goal5",
+                     "src":"box05",
+                     "type":"goal"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":35,
+                 "x":637,
+                 "y":573.667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -162,7 +180,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":56,
+ "nextobjectid":57,
  "orientation":"orthogonal",
  "properties":
     {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="27" height="20" tilewidth="32" tileheight="32" nextobjectid="41">
- <tileset firstgid="1" name="platform_tiles01" tilewidth="32" tileheight="32" tilecount="171">
+ <tileset firstgid="1" name="platform_tiles01" tilewidth="32" tileheight="32" tilecount="171" columns="9">
   <image source="../images/platform_tiles01.png" trans="ff00ff" width="288" height="608"/>
  </tileset>
- <tileset firstgid="172" name="tiles_spritesheet" tilewidth="35" tileheight="35" spacing="1" tilecount="156">
+ <tileset firstgid="172" name="tiles_spritesheet" tilewidth="35" tileheight="35" spacing="1" tilecount="156" columns="12">
   <image source="../images/tiles_spritesheet.png" trans="ff00ff" width="457" height="468"/>
  </tileset>
  <layer name="backgroundLayer" width="27" height="20">
@@ -986,7 +986,7 @@
    <tile gid="0"/>
    <tile gid="56"/>
    <tile gid="47"/>
-   <tile gid="0"/>
+   <tile gid="47"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1013,7 +1013,7 @@
    <tile gid="0"/>
    <tile gid="56"/>
    <tile gid="56"/>
-   <tile gid="0"/>
+   <tile gid="56"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1219,6 +1219,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="129"/>
+   <tile gid="130"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1238,6 +1240,16 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="137"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="138"/>
+   <tile gid="139"/>
+   <tile gid="136"/>
+   <tile gid="145"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1252,6 +1264,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1274,6 +1288,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1293,6 +1309,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1316,9 +1335,12 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="146"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1389,15 +1411,31 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="145"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="136"/>
+   <tile gid="147"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1485,6 +1523,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="122"/>
+   <tile gid="123"/>
+   <tile gid="124"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1509,79 +1550,38 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="131"/>
+   <tile gid="132"/>
+   <tile gid="133"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="136"/>
+   <tile gid="145"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
+   <tile gid="140"/>
+   <tile gid="141"/>
+   <tile gid="142"/>
+   <tile gid="136"/>
+   <tile gid="136"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2183,7 +2183,7 @@
   </data>
  </layer>
  <objectgroup name="objectsLayer">
-  <object id="27" gid="318" x="98" y="577" width="35" height="35">
+  <object id="27" gid="318" x="50" y="511" width="35" height="35">
    <properties>
     <property name="type" value="player"/>
    </properties>
@@ -2192,6 +2192,7 @@
    <properties>
     <property name="key" value="goal_01_about"/>
     <property name="nextLevel" value="level_01_about"/>
+    <property name="src" value="level01"/>
     <property name="type" value="goal"/>
    </properties>
   </object>
@@ -2199,6 +2200,7 @@
    <properties>
     <property name="key" value="goal_02_skills"/>
     <property name="nextLevel" value="level_02_skills"/>
+    <property name="src" value="level02"/>
     <property name="type" value="goal"/>
    </properties>
   </object>
@@ -2206,13 +2208,15 @@
    <properties>
     <property name="key" value="goal_03_works"/>
     <property name="nextLevel" value="level_03_works"/>
+    <property name="src" value="level03"/>
     <property name="type" value="goal"/>
    </properties>
   </object>
-  <object id="40" gid="226" x="827" y="576" width="35" height="35">
+  <object id="40" gid="226" x="667" y="576" width="35" height="35">
    <properties>
     <property name="key" value="goal_04_contact"/>
     <property name="nextLevel" value="level_04_contact"/>
+    <property name="src" value="level04"/>
     <property name="type" value="goal"/>
    </properties>
   </object>

@@ -14,7 +14,6 @@ MGApp.PreloadState = {
     
     this.load.image('goal', 'assets/images/goal.png');
 	this.load.image('exit', 'assets/images/signExit.png');
-    this.load.image('popupPanel', 'assets/images/popup_panel.png');
 	this.load.image('panel01', 'assets/images/panel01.png');
 	this.load.image('cursorHandPrev', 'assets/images/arrowBrown_left.png');
 	this.load.image('cursorHandNext', 'assets/images/arrowBrown_right.png');
@@ -22,16 +21,26 @@ MGApp.PreloadState = {
 	this.load.image('skillsBox', 'assets/images/skills_box.png');
 	
 	//load box images
-	this.load.image('box01', 'assets/images/box/box01.png');
-	this.load.image('box02', 'assets/images/box/box02.png');
-	this.load.image('box03', 'assets/images/box/box03.png');
-	this.load.image('box04', 'assets/images/box/box04.png');
+	this.load.image('box01', 'assets/images/box01.png');
+	
+	this.load.image('box02', 'assets/images/box01.png');
+	this.load.image('box03', 'assets/images/box01.png');
+	this.load.image('box04', 'assets/images/box01.png');
+	this.load.image('box05', 'assets/images/box01.png');
+	
+	this.load.image('level01', 'assets/images/sign01.png');
+	this.load.image('level02', 'assets/images/sign02.png');
+	this.load.image('level03', 'assets/images/sign03.png');
+	this.load.image('level04', 'assets/images/sign04.png');
+	
+	
 	//load npc image
 	//this.load.image('npc_01_about', 'assets/images/npc_01_about.png');
 	this.load.spritesheet('npc_01_about', 'assets/images/player_02.png', 30, 45, 6, 1, 1); 
 	
     this.load.spritesheet('player', 'assets/images/player_spritesheet.png', 28, 30, 5, 1, 1); 
     
+	 
     this.load.image('arrowLeftButton', 'assets/images/controls/arrowLeftButton.png');    
 	this.load.image('arrowRightButton', 'assets/images/controls/arrowRightButton.png');    
     this.load.image('actionButton', 'assets/images/controls/actionButton.png');    

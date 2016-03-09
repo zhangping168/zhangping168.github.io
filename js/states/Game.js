@@ -5,7 +5,7 @@ MGApp.GameState = {
   init: function(level) {    
 	//var level = 'level_01_about'; //temp level,remove it later
 	//var level = 'level_02_skills';
-	var level = 'level_03_works';
+	//var level = 'level_03_works';
     this.currentLevel = level || 'level_home';  
     //constants
     this.RUNNING_SPEED = 180;
@@ -85,8 +85,9 @@ MGApp.GameState = {
 		this.game.physics.arcade.overlap(this.player, this.goal_02,this.showWorks,null,this);       
 		this.game.physics.arcade.overlap(this.player, this.goal_03,this.showWorks,null,this); 
 		this.game.physics.arcade.overlap(this.player, this.goal_04,this.showWorks,null,this);   
-		this.game.physics.arcade.overlap(this.player, this.goal_05,this.showWorks,null,this);   
-			
+		this.game.physics.arcade.overlap(this.player, this.goal_05,this.showWorks,null,this);  
+		this.game.physics.arcade.overlap(this.player, this.goal_06,this.showWorks,null,this);  		
+		
 	 };
 	 //end level_03_works
 	 
@@ -135,7 +136,11 @@ MGApp.GameState = {
 	else if(box =='box04'){
 		this.dialogText.text = this.level_03_content.content[3].text;
 	}
+	else if(box =='box05'){
+		this.dialogText.text = this.level_03_content.content[4].text;
+	}
 	else{}
+	this.dialogText.addColor('#000000',0);	 
   },
   
   getSkills: function(player,skills){
@@ -174,13 +179,17 @@ MGApp.GameState = {
     //create goal objects
       
       var goalsArray = this.findObjectsByType('goal',this.map,'objectsLayer');
-	  //console.log(goalsArray);
+	  
       var npcsArray = this.findObjectsByType('npc',this.map,'objectsLayer');
 	 if(this.currentLevel == 'level_home'){
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
 		this.goal_02=this.createObjectGoal(goalsArray[1]);
 		this.goal_03=this.createObjectGoal(goalsArray[2]);
 		this.goal_04=this.createObjectGoal(goalsArray[3]); 
+		this.goal_01.scale.setTo(0.5);
+		this.goal_02.scale.setTo(0.5);
+		this.goal_03.scale.setTo(0.5);
+		this.goal_04.scale.setTo(0.5);
 	 }
 	 
 	 /*if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){*/
@@ -220,14 +229,16 @@ MGApp.GameState = {
 	 }
 	 
 	 if(this.currentLevel == 'level_03_works' ){
-	 console.log(goalsArray);
+
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
 		this.goal_02=this.createObjectGoal(goalsArray[1]);
 		this.goal_03=this.createObjectGoal(goalsArray[2]);
 		this.goal_04=this.createObjectGoal(goalsArray[3]); 
 		this.goal_05=this.createObjectGoal(goalsArray[4]);
+		this.goal_06=this.createObjectGoal(goalsArray[5]);
 		this.level_03_content = JSON.parse(this.game.cache.getText('level_03_content'));
 		this.loadDialog(this.currentLevel);
+		
 	 }
 	 
      if(this.currentLevel == 'level_01_about'){this.loadDialog(this.currentLevel);}
@@ -275,7 +286,7 @@ MGApp.GameState = {
   loadDialog: function(level){
 	  var level_content;
 	  
-	 this.panel01 = this.add.sprite(this.game.world.centerX,this.game.world.centerY-30,'panel01');
+	 this.panel01 = this.add.sprite(this.game.world.centerX,this.game.world.centerY-40,'panel01');
 	 this.panel01.anchor.setTo(0.5);
 	 
 	  if(level =='level_01_about'){
@@ -328,14 +339,20 @@ MGApp.GameState = {
 	  }else{
 	  };
   
- 
+	if(level =='level_03_works')
+	{
+		var style = { font: "2em Arial", fill: "#000", wordWrap: true, wordWrapWidth: 340, align: "center"};
+	}else{
 	 var style = { font: "1.5em Arial", fill: "#000", wordWrap: true, wordWrapWidth: 340, align: "center"};
+};
    	 var x = Math.round(this.panel01.left + 40);
 	 var y = Math.round(this.panel01.top + 40);
 	 this.dialogText = this.add.text(x,y,level_content.content[0].text,style);
-	 	 
+	 
 	 if(level =='level_03_works'){
 		this.dialogText.text=level_content.intro;
+		
+		this.dialogText.addColor('#ff0000',0);
 	 }
     
 
@@ -362,7 +379,9 @@ MGApp.GameState = {
 		  this[goalName].anchor.setTo(0.5);
 
 	  }else{
-		  this[goalName] = this.add.sprite(goal.x,goal.y,'goal');
+		  this[goalName] = this.add.sprite(goal.x,goal.y,src);
+		  this[goalName].anchor.setTo(0.5);
+		  
 	  };
 	  
       this.game.physics.arcade.enable(this[goalName]);
@@ -375,7 +394,7 @@ MGApp.GameState = {
       
   },
   talkToNpc: function(){
-	console.log('Hi,Npc');  
+	
   },
   gameOver: function(){
 	this.game.state.start('Game',true,false,this.currentLevel);  
