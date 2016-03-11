@@ -152,7 +152,9 @@ MGApp.GameState = {
 	
 	//parse json data for each level
 	
-	
+	this.clouds = this.add.tileSprite(0,0,this.game.world.width,this.game.world.height,'cloud');
+	//this.clouds.tileScale;
+	this.clouds.autoScroll(this.RUNNING_SPEED * 0.1,0);
 	//Load tile map
 	this.map = this.add.tilemap(this.currentLevel);
 	
@@ -377,6 +379,7 @@ MGApp.GameState = {
 		   //01_about state
 		  this[goalName] = this.add.sprite(goal.x,goal.y,goalSrc);
 		  this[goalName].anchor.setTo(0.5);
+		  this[goalName].scale.setTo(0.5);
 
 	  }else{
 		  this[goalName] = this.add.sprite(goal.x,goal.y,src);
