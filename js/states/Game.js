@@ -400,6 +400,34 @@ MGApp.GameState = {
 	
   },
   gameOver: function(){
+	//game over overlay
+    this.overlay = this.add.bitmapData(this.game.width, this.game.height);
+    this.overlay.ctx.fillStyle = '#f00';
+    this.overlay.ctx.fillRect(0, 0, this.game.width, this.game.height);
+    
+    //sprite for the overlay
+    this.panel = this.add.sprite(0, this.game.height, this.overlay);
+    this.panel.alpha = 0.25;
+    
+    //overlay raising tween animation
+    var gameOverPanel = this.add.tween(this.panel);
+    gameOverPanel.to({y: 0}, 500);
+	
+	gameOverPanel.onComplete.add(function(){
+		 var style = { font: "30px Arial", fill: "#fff", align: "center" };
+
+		 this.add.text(this.game.width/2, this.game.height/2, "Caution Water, Click or Tap to start again", style).anchor.setTo(0.5);
+		 
+		 this.game.input.onDown.addOnce(this.restartGame,this);
+	
+	},this);
+	
+	//start the tween animations
+	gameOverPanel.start();
+	
+	
+  },
+  restartGame: function(){
 	this.game.state.start('Game',true,false,this.currentLevel);  
   },
   createOnscreenControls: function(){
