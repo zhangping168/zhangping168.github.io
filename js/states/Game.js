@@ -402,12 +402,12 @@ MGApp.GameState = {
   gameOver: function(){
 	//game over overlay
     this.overlay = this.add.bitmapData(this.game.width, this.game.height);
-    this.overlay.ctx.fillStyle = '#f00';
+    this.overlay.ctx.fillStyle = '#000';
     this.overlay.ctx.fillRect(0, 0, this.game.width, this.game.height);
     
     //sprite for the overlay
     this.panel = this.add.sprite(0, this.game.height, this.overlay);
-    this.panel.alpha = 0.25;
+    this.panel.alpha = 0.5;
     
     //overlay raising tween animation
     var gameOverPanel = this.add.tween(this.panel);
