@@ -42,6 +42,7 @@ MGApp.PreloadState = {
     this.load.image('arrowLeftButton', 'assets/images/controls/arrowLeftButton.png');    
 	this.load.image('arrowRightButton', 'assets/images/controls/arrowRightButton.png');    
     this.load.image('actionButton', 'assets/images/controls/actionButton.png');    
+	this.load.image('ready', 'assets/images/text_ready.png');    
 	
 	//load dialog json file
 	this.load.text('level_01_content','assets/data/level_01_content.json');
@@ -54,10 +55,8 @@ MGApp.PreloadState = {
 	this.load.tilemap('level_01_about','assets/levels/level_01_about.json',null,Phaser.Tilemap.TILED_JSON);
 	this.load.tilemap('level_02_skills','assets/levels/level_02_skills.json',null,Phaser.Tilemap.TILED_JSON);
 	this.load.tilemap('level_03_works','assets/levels/level_03_works.json',null,Phaser.Tilemap.TILED_JSON);
-	this.load.tilemap('level_04_contact','assets/levels/level_04_contact.json',null,Phaser.Tilemap.TILED_JSON);
-
   },
   create: function() {
-    this.state.start('Game');
+    this.state.start('Home');
   }
 };
