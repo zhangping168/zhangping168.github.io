@@ -416,7 +416,7 @@ MGApp.GameState = {
 	gameOverPanel.onComplete.add(function(){
 		 var style = { font: "30px Arial", fill: "#fff", align: "center" };
 
-		 this.add.text(this.game.width/2, this.game.height/2, "Caution Water, Click or Tap to start again", style).anchor.setTo(0.5);
+		 this.add.text(this.game.world.centerX, this.game.world.centerY, "Caution Water, Click or Tap to start again", style).anchor.setTo(0.5);
 		 
 		 this.game.input.onDown.addOnce(this.restartGame,this);
 	
