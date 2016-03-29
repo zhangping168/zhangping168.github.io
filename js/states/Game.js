@@ -3,6 +3,9 @@ var MGApp = MGApp || {};
 MGApp.GameState = {
 
   init: function(level) {    
+
+  	
+
 	//var level = 'level_01_about'; //temp level,remove it later
 	//var level = 'level_02_skills';
 	//var level = 'level_03_works';
@@ -149,7 +152,6 @@ MGApp.GameState = {
   },
   loadLevel: function(){  
 	
-	
 	//parse json data for each level
 	
 	this.clouds = this.add.tileSprite(0,0,this.game.world.width,this.game.world.height,'cloud');
@@ -176,6 +178,8 @@ MGApp.GameState = {
 	
 	//resize the world to fit the layer
 	this.backgroundLayer.resizeWorld();
+	
+	
 	
       
     //create goal objects
@@ -267,7 +271,12 @@ MGApp.GameState = {
 	
 	//load popup text panel
 	
-	
+	this.blackOverlay = this.game.add.graphics(0,0);
+	this.blackOverlay.beginFill('#000000',1);
+	this.blackOverlay.drawRect(0,0,this.game.world.width,this.game.world.height);
+	this.blackOverlay.endFill();
+	this.blackOverlay.alpha = 0.6;
+	this.blackOverlay.visible = false;
 	
   },
   
@@ -400,30 +409,26 @@ MGApp.GameState = {
 	
   },
   gameOver: function(){
-	//game over overlay
-    this.overlay = this.add.bitmapData(this.game.width, this.game.height);
-    this.overlay.ctx.fillStyle = '#000';
-    this.overlay.ctx.fillRect(0, 0, this.game.width, this.game.height);
-    
-    //sprite for the overlay
-    this.panel = this.add.sprite(0, this.game.height, this.overlay);
-    this.panel.alpha = 0.5;
-    
-    //overlay raising tween animation
-    var gameOverPanel = this.add.tween(this.panel);
-    gameOverPanel.to({y: 0}, 500);
 	
-	gameOverPanel.onComplete.add(function(){
-		 var style = { font: "30px Arial", fill: "#fff", align: "center" };
-
-		 this.add.text(this.game.world.centerX, this.game.world.centerY, "Caution Water, Click or Tap to start again", style).anchor.setTo(0.5);
-		 
-		 this.game.input.onDown.addOnce(this.restartGame,this);
+		this.gameOverBtn = this.add.sprite(this.game.world.centerX,this.game.world.centerY,'gameOver');
+		this.gameOverBtn.anchor.setTo(0.5);
+		
+		//set background to transparent black
+		this.blackOverlay.visible = true;
+		
+		this.gameOverBtnTween = this.game.add.tween(this.gameOverBtn);
+		
+		this.gameOverBtnTween.to({
+			alpha:[0,1]
+		},2000,Phaser.Easing.Quadratic.out,false,200);
+		
+		this.gameOverBtnTween.start();
+		this.gameOverBtnTween.loop(-1);
 	
-	},this);
 	
-	//start the tween animations
-	gameOverPanel.start();
+		this.game.input.onDown.addOnce(this.restartGame,this);
+	
+	
 	
 	
   },

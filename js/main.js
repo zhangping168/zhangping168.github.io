@@ -10,3 +10,5 @@ MGApp.game.state.add('Home', MGApp.HomeState);
 MGApp.game.state.add('Game', MGApp.GameState);
 
 MGApp.game.state.start('Boot'); 
+
+

@@ -43,6 +43,7 @@ MGApp.PreloadState = {
 	this.load.image('arrowRightButton', 'assets/images/controls/arrowRightButton.png');    
     this.load.image('actionButton', 'assets/images/controls/actionButton.png');    
 	this.load.image('ready', 'assets/images/text_ready.png');    
+	this.load.image('gameOver', 'assets/images/text_gameover.png');    
 	
 	//load dialog json file
 	this.load.text('level_01_content','assets/data/level_01_content.json');

@@ -5,6 +5,7 @@ MGApp.BootState = {
   init: function() {
     //loading screen will have a white background
     this.game.stage.backgroundColor = '#fff';  
+    this.game.add.plugin(Phaser.Plugin.Debug);
     
     //scaling options
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;

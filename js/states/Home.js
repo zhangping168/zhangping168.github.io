@@ -33,7 +33,16 @@ MGApp.HomeState = {
 	text.anchor.setTo(0.5);
 	text.addColor('#ff0000',31);
 
-	this.add.button(text.left+115,text.bottom+12,'ready');
+	this.readyBtn = this.add.sprite(text.left+115,text.bottom+12,'ready');
+	
+	this.readyBtnTween = this.game.add.tween(this.readyBtn);
+	
+	this.readyBtnTween.to({
+			alpha:[0,1]
+	},2000,Phaser.Easing.Quadratic.out,false,200);
+	
+	this.readyBtnTween.start();
+	this.readyBtnTween.loop(-1);
 	
 	this.game.input.onDown.addOnce(function(){
 		this.changeLevel();
