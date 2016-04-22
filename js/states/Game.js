@@ -7,7 +7,7 @@ MGApp.GameState = {
   	
 
 	//var level = 'level_01_about'; //temp level,remove it later
-	var level = 'level_02_skills';
+	//var level = 'level_02_skills';
 	//var level = 'level_03_works';
     this.currentLevel = level || 'level_home';  
     //constants
