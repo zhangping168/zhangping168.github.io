@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="27" height="20" tilewidth="32" tileheight="32" nextobjectid="51">
- <tileset firstgid="1" name="platform_tiles01" tilewidth="32" tileheight="32" tilecount="171" columns="9">
+ <tileset firstgid="1" name="platform_tiles01" tilewidth="32" tileheight="32" tilecount="171">
   <image source="../images/platform_tiles01.png" trans="ff00ff" width="288" height="608"/>
  </tileset>
- <tileset firstgid="172" name="tiles_spritesheet" tilewidth="35" tileheight="35" spacing="1" tilecount="156" columns="12">
+ <tileset firstgid="172" name="tiles_spritesheet" tilewidth="35" tileheight="35" spacing="1" tilecount="156">
   <image source="../images/tiles_spritesheet.png" trans="ff00ff" width="457" height="468"/>
  </tileset>
  <layer name="backgroundLayer" width="27" height="20">

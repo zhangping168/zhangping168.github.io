@@ -117,7 +117,6 @@
  "tileheight":32,
  "tilesets":[
         {
-         "columns":9,
          "firstgid":1,
          "image":"..\/images\/platform_tiles01.png",
          "imageheight":608,
@@ -135,7 +134,6 @@
          "transparentcolor":"#ff00ff"
         }, 
         {
-         "columns":12,
          "firstgid":172,
          "image":"..\/images\/tiles_spritesheet.png",
          "imageheight":468,

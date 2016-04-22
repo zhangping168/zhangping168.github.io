@@ -15,7 +15,7 @@ MGApp.PreloadState = {
 	this.load.image('panel01', 'assets/images/panel01.png');
 	this.load.image('cursorHandPrev', 'assets/images/arrowBrown_left.png');
 	this.load.image('cursorHandNext', 'assets/images/arrowBrown_right.png');
-	
+		
 	this.load.image('skillsBox', 'assets/images/skills_box.png');
 	this.load.image('cloud', 'assets/images/cloud.png');
 	

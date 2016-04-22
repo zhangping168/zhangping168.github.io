@@ -7,14 +7,14 @@ MGApp.GameState = {
   	
 
 	//var level = 'level_01_about'; //temp level,remove it later
-	//var level = 'level_02_skills';
+	var level = 'level_02_skills';
 	//var level = 'level_03_works';
     this.currentLevel = level || 'level_home';  
     //constants
     this.RUNNING_SPEED = 180;
     this.JUMPING_SPEED = 500;
 	
-	this.SKillSBOX_FREQ = 2.5;
+	this.SKillSBOX_FREQ = 3;
 	this.SKillSBOX_SPEED = -80;
 	
 	this.CONTACT = "Currently available for contract or full time work and would love to hear from you, reach me at zhangping168@gmail.com, thanks~";
@@ -216,9 +216,9 @@ MGApp.GameState = {
 		this.npc = this.goal_02;
 		
 		
-		 var style = { font: "65px Arial", fill: "#000", align: "center" };
+		 var style = { font: "3em Arial", fill: "#f00", align: "center" };
 
-		 var text = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "- Skillset-\n And \nWorking Knowledge", style);
+		 var text = this.game.add.text(this.game.world.centerX, this.game.world.height-100, "Try to move the player to the top right exit", style);
 
          text.anchor.set(0.5);
 		 text.alpha=0.4;
