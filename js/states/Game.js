@@ -16,6 +16,8 @@ MGApp.GameState = {
 	
 	this.SKillSBOX_FREQ = 2.5;
 	this.SKillSBOX_SPEED = -80;
+	
+	this.CONTACT = "Currently available for contract or full time work and would love to hear from you, reach me at zhangping168@gmail.com, thanks~";
 
     //gravity
     this.game.physics.arcade.gravity.y = 1000;    
@@ -56,7 +58,7 @@ MGApp.GameState = {
 		this.game.physics.arcade.overlap(this.player, this.goal_01,this.changeLevel,null,this); 
 		this.game.physics.arcade.overlap(this.player, this.goal_02,this.changeLevel,null,this);       
 		this.game.physics.arcade.overlap(this.player, this.goal_03,this.changeLevel,null,this); 
-		this.game.physics.arcade.overlap(this.player, this.goal_04,this.changeLevel,null,this);       
+		this.game.physics.arcade.overlap(this.player, this.goal_04,this.popupLevel,null,this);       
 	 };
 	 
 	 //if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){
@@ -191,11 +193,11 @@ MGApp.GameState = {
 		this.goal_01=this.createObjectGoal(goalsArray[0]);
 		this.goal_02=this.createObjectGoal(goalsArray[1]);
 		this.goal_03=this.createObjectGoal(goalsArray[2]);
-		this.goal_04=this.createObjectGoal(goalsArray[3]); 
+		//this.goal_04=this.createObjectGoal(goalsArray[3]); 
 		this.goal_01.scale.setTo(0.5);
 		this.goal_02.scale.setTo(0.5);
 		this.goal_03.scale.setTo(0.5);
-		this.goal_04.scale.setTo(0.5);
+		//this.goal_04.scale.setTo(0.5);
 	 }
 	 
 	 /*if(this.currentLevel == 'level_01_about' || this.currentLevel == 'level_02_skills' || this.currentLevel == 'level_03_works' || this.currentLevel == 'level_04_contact' ){*/
@@ -407,6 +409,9 @@ MGApp.GameState = {
   },
   talkToNpc: function(){
 	
+  },
+  popupLevel: function(){
+			
   },
   gameOver: function(){
 	
